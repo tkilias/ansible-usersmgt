@@ -1,0 +1,49 @@
+---
+users: []
+#  - name: "USER_NAME"
+#    uid: UNIQUE_UID
+#    group: "PRIMARY_GROUP"
+#    groups: # optional
+#      - name: secondarygroupexample
+#        host: server2.example.com
+#    comment: "FULL_NAME"
+#    non_unique: yes
+#    system: no
+#    createhome: yes
+#    not_on_hosts:
+#      - server3.example.com
+
+users_absent: []
+#  - name: exampleuser
+#    uid: 1111
+#    comment: "Example User"
+#    group: "examplegroup"
+
+# Global user ssh key list
+users_ssh: []
+#  - name: mlukaschek
+#    key: "{{ lookup('file', 'data/user-keys/mlukaschek.pub') }}"
+#    not_on_hosts:
+#      - server.example.com
+
+users_absent_ssh: []
+#  - name: example
+#    not_on_hosts: []
+
+# Global user sudo list
+users_sudo: []
+#  - name: example
+#    mode: "ALL"
+#    not_on_hosts: []
+
+users_groups: []
+#  - name: examplegroup
+#    gid: 1111
+#    system: no
+#    not_on_hosts: []
+
+users_absent_groups: []
+#  - name: examplegroup
+#    gid: 1111
+#    system: yes
+#    not_on_hosts: []

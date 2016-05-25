@@ -1,0 +1,9 @@
+---
+- name: Delete groups in absent
+  group:
+    gid: "{{ item.gid|default('') }}"
+    name: "{{ item.name|default('') }}"
+    system: "{{ item.system|default('no') }}"
+    state: absent
+  with_items: "{{ users_absent_groups }}"
+  when: "item.not_on_hosts is not defined or inventory_hostname not in item.not_on_hosts"

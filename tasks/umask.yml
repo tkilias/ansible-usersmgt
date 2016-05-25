@@ -1,0 +1,8 @@
+---
+- name: Create umask.sh file from template
+  template:
+    src: umask.sh.j2
+    dest: /etc/profile.d/umask.sh
+    owner: root
+    group: root
+    mode: 0644

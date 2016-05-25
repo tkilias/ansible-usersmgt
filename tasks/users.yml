@@ -1,0 +1,54 @@
+---
+- name: Create users
+  user:
+    name: "{{ item.name }}"
+    state: present
+    comment: "{{ item.comment|default('') }}"
+    uid: "{{ item.uid }}"
+    group: "{{ item.group|default('users') }}"
+    non_unique: "{{ item.non_unique|default('no') }}"
+    system: "{{ item.system|default('no') }}"
+    groups: "{% if item.groups is defined %}{% for group in item.groups %}{% if inventory_hostname == group.host %}{{ group.name }}{% if not loop.last %},{% endif %}{% endif %}{% endfor %}{% endif %}"
+    move_home: "{{ item.system|default('no') }}"
+    home: "{{ item.home }}"
+    createhome: "{{ item.createhome|default('yes') }}"
+    shell: "{{ item.shell|default('/bin/bash') }}"
+  with_items: "{{ users }}"
+  when: "item.not_on_hosts is not defined or inventory_hostname not in item.not_on_hosts"
+
+- name: Stat /etc/sudoers
+  stat:
+    path: /etc/sudoers
+  register: sudoers
+
+- name: Create sudoers file backup
+  command: cp -f /etc/sudoers /etc/sudoers.bak
+  when: sudoers.stat.exists
+
+- name: Copy sudoers file for safety
+  command: cp -f /etc/sudoers /etc/sudoers.tmp
+  register: sudoers_tmp
+  when: sudoers.stat.exists
+
+- name: Add sudo users
+  lineinfile:
+    dest: /etc/sudoers.tmp
+    state: present
+    regexp: '^{{ item.name }}'
+    line: "{{ item.name }} ALL=(ALL) {{ item.mode|default('ALL')}}"
+    validate: "/usr/sbin/visudo -q -c -f %s"
+  when: sudoers_tmp.rc == 0 and (item.not_on_hosts is not defined or inventory_hostname not in item.not_on_hosts)
+  with_items: "{{ users_sudo }}"
+
+- name: Make sure ssh-agent works via sudo
+  lineinfile:
+    dest: /etc/sudoers.tmp
+    state: present
+    regexp: '^Defaults env_keep\+\=SSH_AUTH_SOCK'
+    line: 'Defaults env_keep+=SSH_AUTH_SOCK'
+    validate: "/usr/sbin/visudo -q -c -f %s"
+  when: sudoers_tmp.rc == 0
+
+- name: Copy sudoers file back
+  shell: cp -f /etc/sudoers.tmp /etc/sudoers
+  when: sudoers_tmp.rc == 0

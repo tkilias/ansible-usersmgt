@@ -1,0 +1,41 @@
+---
+- name: Create ssh key directory
+  file:
+    path: "/etc/ssh/authorized_keys"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - restart sshd
+
+- name: Add ssh pub key for users
+  authorized_key:
+    user: "{{ item.name }}"
+    key: "{{ item.key }}"
+    state: present
+    path: "/etc/ssh/authorized_keys/{{ item.name }}"
+    manage_dir: no
+  with_items: "{{ users_ssh }}"
+  when: "item.not_on_hosts is not defined or inventory_hostname not in item.not_on_hosts"
+  notify:
+    - restart sshd
+
+- name: Fix ssh pub key permissions
+  file:
+    path: "/etc/ssh/authorized_keys/{{ item.name }}"
+    state: file
+    owner: root
+    group: root
+    mode: 0444
+  with_items: "{{ users_ssh }}"
+
+- name: Remove ssh authorized key directory for absent users
+  file:
+    path: "/etc/ssh/authorized_keys/{{ item.name }}"
+    state: absent
+  with_items: "{{ users_absent_ssh }}"
+  when: item.not_on_hosts is not defined or inventory_hostname not in item.not_on_hosts
+  ignore_errors: yes
+  notify:
+    - restart sshd

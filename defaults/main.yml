@@ -1,0 +1,10 @@
+users: []
+users_ssh: []
+users_sudo: []
+users_absent: []
+users_absent_ssh: []
+users_groups: []
+users_absent_groups: []
+
+users_set_umask: true
+users_umask: "077"

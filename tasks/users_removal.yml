@@ -1,0 +1,9 @@
+---
+- name: Remove absent users
+  user:
+    name: "{{ item.name }}"
+    state: absent
+    comment: "{{ item.comment|default('') }}"
+    uid: "{{ item.uid }}"
+    group: "{{ item.group }}"
+  with_items: "{{ users_absent }}"
