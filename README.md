@@ -1,6 +1,7 @@
 ansible-usersmgt
 =========
 
+[![Build Status](https://travis-ci.org/galexrt/ansible-usersmgt.svg?branch=master)](https://travis-ci.org/galexrt/ansible-usersmgt)
 An user management role for Ansible.
 Requirements
 ------------
