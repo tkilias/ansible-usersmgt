@@ -1,6 +1,6 @@
 galaxy_info:
   author: your galexrt
-  description: An user management module for Ansible.
+  description: An user management role for Ansible.
   company:
   
   # If the issue tracker for your role is not on github, uncomment the
@@ -52,15 +52,15 @@ galaxy_info:
   #  - 11.3
   - name: Fedora
     versions:
-  #  - all
+    - all
   #  - 16
   #  - 17
   #  - 18
   #  - 19
   #  - 20
-    - 21
-    - 22
-    - 23
+  #  - 21
+  #  - 22
+  #  - 23
   #- name: opensuse
   #  versions:
   #  - all
@@ -139,24 +139,24 @@ galaxy_info:
   #  - 11SP1
   #  - 11SP2
   #  - 11SP3
-  #- name: GenericLinux
-  #  versions:
-  #  - all
-  #  - any
+  - name: GenericLinux
+    versions:
+    - all
+    - any
   #- name: NXOS
   #  versions:
   #  - all
   #  - any
   - name: Debian
     versions:
-  #  - all
+    - all
   #  - etch
-    - jessie
+  #  - jessie
   #  - lenny
-    - sid
-    - squeeze
-    - stretch
-    - wheezy
+  #  - sid
+  #  - squeeze
+  #  - stretch
+  #  - wheezy
   
   galaxy_tags:
     - users
