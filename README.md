@@ -1,4 +1,4 @@
-Role Name
+ansible-usersmgt
 =========
 
 This role is made for simple user management with SSH key support.
