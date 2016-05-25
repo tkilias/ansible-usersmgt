@@ -2,22 +2,18 @@ ansible-usersmgt
 =========
 
 This role is made for simple user management with SSH key support.
-
 Requirements
 ------------
 
 No special requirements.
-
 Role Variables
 --------------
 
 Please check the file `vars/all.yml` to see what variables are available.
-
 Dependencies
 ------------
 
 No dependencies.
-
 Example Playbook
 ----------------
 
@@ -31,7 +27,6 @@ License
 -------
 
 Apache License Version 2.0
-
 Author Information
 ------------------
 
