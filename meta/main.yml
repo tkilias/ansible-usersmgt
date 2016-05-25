@@ -61,9 +61,9 @@ galaxy_info:
   #  - 21
   #  - 22
   #  - 23
-  #- name: opensuse
-  #  versions:
-  #  - all
+  - name: opensuse
+    versions:
+    - all
   #  - 12.1
   #  - 12.2
   #  - 12.3
@@ -114,9 +114,9 @@ galaxy_info:
   #  - 9.1
   #  - 9.2
   #  - 9.3
-  #- name: Ubuntu
-  #  versions:
-  #  - all
+  - name: Ubuntu
+    versions:
+    - all
   #  - lucid
   #  - maverick
   #  - natty
