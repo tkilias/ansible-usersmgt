@@ -32,4 +32,7 @@ Apache License Version 2.0
 Author Information
 ------------------
 
-If you have problems with the role, feel free to create an issue on Github.
+If you have problems with the role, feel free to create an issue on Github or contact me by mail.
+Roadmap
+-------
+- [ ] Configurable SSH key directory (two modes, all in one and per user)
