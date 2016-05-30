@@ -6,5 +6,5 @@ users_absent_ssh: []
 users_groups: []
 users_absent_groups: []
 
-users_set_umask: true
+users_set_umask: false
 users_umask: "077"
