@@ -7,3 +7,4 @@
     uid: "{{ item.uid }}"
     group: "{{ item.group }}"
   with_items: "{{ users_absent }}"
+  when: "item.not_on_hosts is not defined or inventory_hostname not in item.not_on_hosts"

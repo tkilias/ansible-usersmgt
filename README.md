@@ -39,5 +39,6 @@ For examples on how to use this Ansible role refer to the [EXAMPLES.md](EXAMPLES
 TODO List
 -------
 - [x] Configurable SSH key directory (two modes, all in one and per user)
-- [ ] Add not_on_hosts and on_hosts to user removal
+- [x] Add not_on_hosts and on_hosts to user removal
+- [ ] Add not_on_hosts and on_hosts to umaks task
 - [ ] Write tests
