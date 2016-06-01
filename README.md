@@ -33,6 +33,11 @@ Author Information
 ------------------
 
 If you have problems with the role, feel free to create an issue on Github or contact me by mail.
-Roadmap
+Examples
+--------
+For examples on how to use this Ansible role refer to the [EXAMPLES.md](EXAMPLES.md).
+TODO List
 -------
-- [ ] Configurable SSH key directory (two modes, all in one and per user)
+- [x] Configurable SSH key directory (two modes, all in one and per user)
+- [ ] Add not_on_hosts and on_hosts to user removal
+- [ ] Write tests
