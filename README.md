@@ -41,4 +41,5 @@ TODO List
 - [x] Configurable SSH key directory (two modes, all in one and per user)
 - [x] Add not_on_hosts and on_hosts to user removal
 - [ ] Add not_on_hosts and on_hosts to umaks task
+- [ ] Add/Fix `on_hosts` and `not_on_hosts`
 - [ ] Write tests
