@@ -1,5 +1,12 @@
 # Examples
 
+## To not execute an action on specified hosts use:
+**WARNING**: The following two variables can't be specified together in one item!
+```
+not_on_hosts: [] # This tells the role not to create the user on the specific host(s)
+only_on_hosts: [] # This tells the role to only create the user on the specific host(s)
+```
+
 ## Creating user(s)
 In this example we want to create an user named `ansible`
 ```
@@ -19,8 +26,9 @@ users:
 #    non_unique: yes
 #    system: no
 #    createhome: yes
-#    not_on_hosts: []  # This tells the role not to create the user on the specific host(s)
-#    on_hosts: [] # This tells the role to only create the user on the specific host(s)
+# WARNING: The following two variables can't be specified together in one list item
+#    not_on_hosts: [] # This tells the role not to create the user on the specific host(s)
+#    only_on_hosts: [] # This tells the role to only create the user on the specific host(s)
 ```
 
 ## Remove user(s)
@@ -40,7 +48,6 @@ users_ssh:
     key: "{{ lookup('file', 'user-keys/exampleusertwo.pub') }}"
     not_on_hosts: # This tells the role not to create the user on the specific host(s)
       - not-in-my-swamp.example.com
-
 ```
 
 ## Remove SSH key(s) for user(s)

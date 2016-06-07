@@ -6,4 +6,4 @@
     system: "{{ item.system|default('no') }}"
     state: present
   with_items: "{{ users_groups }}"
-  when: "item.not_on_hosts is not defined or inventory_hostname not in item.not_on_hosts"
+  when: ((only_on_hosts is not defined and not_on_hosts is not defined) or (only_on_hosts is defined and not_on_hosts is defined)) or (only_on_hosts is defined and inventory_hostname in only_on_hosts) or (not_on_hosts is defined and inventory_hostname not in not_on_hosts)
