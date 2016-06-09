@@ -14,13 +14,14 @@
     createhome: "{{ item.createhome|default('yes') }}"
     shell: "{{ item.shell|default('/bin/bash') }}"
   with_items: "{{ users }}"
-  when: ((only_on_hosts is not defined and not_on_hosts is not defined) or (only_on_hosts is defined and not_on_hosts is defined)) or (only_on_hosts is defined and inventory_hostname in only_on_hosts) or (not_on_hosts is defined and inventory_hostname not in not_on_hosts)
+  when: (item.only_on_hosts is not defined and item.not_on_hosts is not defined) or (item.only_on_hosts is defined and item.not_on_hosts is defined) or (item.only_on_hosts is defined and inventory_hostname in item.only_on_hosts) or (item.not_on_hosts is defined and inventory_hostname not in item.not_on_hosts)
 
 - name: Stat /etc/sudoers
   stat:
     path: /etc/sudoers
   register: sudoers
-  when: ((only_on_hosts is not defined and not_on_hosts is not defined) or (only_on_hosts is defined and not_on_hosts is defined)) or (only_on_hosts is defined and inventory_hostname in only_on_hosts) or (not_on_hosts is defined and inventory_hostname not in not_on_hosts)
+  with_items: "{{ users }}"
+  when: (item.only_on_hosts is not defined and item.not_on_hosts is not defined) or (item.only_on_hosts is defined and item.not_on_hosts is defined) or (item.only_on_hosts is defined and inventory_hostname in item.only_on_hosts) or (item.not_on_hosts is defined and inventory_hostname not in item.not_on_hosts)
 
 - name: Create sudoers file backup
   command: cp -f /etc/sudoers /etc/sudoers.bak
@@ -38,7 +39,7 @@
     regexp: '^{{ item.name }}'
     line: "{{ item.name }} ALL=(ALL) {{ item.mode|default('ALL')}}"
     validate: "/usr/sbin/visudo -q -c -f %s"
-  when: ((only_on_hosts is not defined and not_on_hosts is not defined) or (only_on_hosts is defined and not_on_hosts is defined)) or (only_on_hosts is defined and inventory_hostname in only_on_hosts) or (not_on_hosts is defined and inventory_hostname not in not_on_hosts) and sudoers_tmp.rc is defined and sudoers_tmp.rc == 0
+  when: (item.only_on_hosts is not defined and item.not_on_hosts is not defined) or (item.only_on_hosts is defined and item.not_on_hosts is defined) or (item.only_on_hosts is defined and inventory_hostname in item.only_on_hosts) or (item.not_on_hosts is defined and inventory_hostname not in item.not_on_hosts) and sudoers_tmp.rc is defined and sudoers_tmp.rc == 0
   with_items: "{{ users_sudo }}"
 
 - name: Make sure ssh-agent works via sudo

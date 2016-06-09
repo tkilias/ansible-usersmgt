@@ -17,7 +17,7 @@
     path: "{{ item.path|default('/etc/ssh/authorized_keys/{{ item.name }}') }}"
     manage_dir: "{{ item.manage_dir|default('no') }}"
   with_items: "{{ users_ssh }}"
-  when: ((only_on_hosts is not defined and not_on_hosts is not defined) or (only_on_hosts is defined and not_on_hosts is defined)) or (only_on_hosts is defined and inventory_hostname in only_on_hosts) or (not_on_hosts is defined and inventory_hostname not in not_on_hosts)
+  when: (item.only_on_hosts is not defined and item.not_on_hosts is not defined) or (item.only_on_hosts is defined and item.not_on_hosts is defined) or (item.only_on_hosts is defined and inventory_hostname in item.only_on_hosts) or (item.not_on_hosts is defined and inventory_hostname not in item.not_on_hosts)
   notify:
     - restart sshd
 
@@ -35,7 +35,7 @@
     path: "/etc/ssh/authorized_keys/{{ item.name }}"
     state: absent
   with_items: "{{ users_absent_ssh }}"
-  when: ((only_on_hosts is not defined and not_on_hosts is not defined) or (only_on_hosts is defined and not_on_hosts is defined)) or (only_on_hosts is defined and inventory_hostname in only_on_hosts) or (not_on_hosts is defined and inventory_hostname not in not_on_hosts)
+  when: (item.only_on_hosts is not defined and item.not_on_hosts is not defined) or (item.only_on_hosts is defined and item.not_on_hosts is defined) or (item.only_on_hosts is defined and inventory_hostname in item.only_on_hosts) or (item.not_on_hosts is defined and inventory_hostname not in item.not_on_hosts)
   ignore_errors: yes
   notify:
     - restart sshd
