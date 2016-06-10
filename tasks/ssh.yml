@@ -14,7 +14,7 @@
     user: "{{ item.name }}"
     key: "{{ item.key }}"
     state: present
-    path: "{{ item.path|default('/etc/ssh/authorized_keys/{{ item.name }}') }}"
+    path: "{{ item.path|default('/etc/ssh/authorized_keys/' + item.name) }}"
     manage_dir: "{{ item.manage_dir|default('no') }}"
   with_items: "{{ users_ssh }}"
   when: (item.only_on_hosts is not defined and item.not_on_hosts is not defined) or (item.only_on_hosts is defined and item.not_on_hosts is defined) or (item.only_on_hosts is defined and inventory_hostname in item.only_on_hosts) or (item.not_on_hosts is defined and inventory_hostname not in item.not_on_hosts)
