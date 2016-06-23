@@ -4,18 +4,22 @@ ansible-usersmgt
 [![Build Status](https://travis-ci.org/galexrt/ansible-usersmgt.svg?branch=master)](https://travis-ci.org/galexrt/ansible-usersmgt)
 
 An user management role for Ansible.
+
 Requirements
 ------------
 
 No special requirements.
+
 Role Variables
 --------------
 
 Please check the file `vars/all.yml` to see what variables are available.
+
 Dependencies
 ------------
 
 No dependencies.
+
 Example Playbook
 ----------------
 
@@ -29,16 +33,16 @@ License
 -------
 
 Apache License Version 2.0
+
 Author Information
 ------------------
 
 If you have problems with the role, feel free to create an issue on Github or contact me by mail.
+
 Examples
 --------
 For examples on how to use this Ansible role refer to the [EXAMPLES.md](EXAMPLES.md).
+
 TODO List
--------
-- [x] Configurable SSH key directory (two modes, all in one and per user)
-- [x] Add not_on_hosts and only_on_hosts to all tasks
-- [x] Add/Fix `on_hosts` and `not_on_hosts`
+--------
 - [ ] Write tests
