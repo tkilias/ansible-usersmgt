@@ -13,7 +13,7 @@ No special requirements.
 Role Variables
 --------------
 
-Please check the file `vars/all.yml` to see what variables are available.
+Please check the file `default/all.yml` to see what variables are available.
 
 Dependencies
 ------------
@@ -27,7 +27,7 @@ To use this role you add the following as the name of the role:
 
     - hosts: all
       roles:
-         - { role: galexrt.ansible-usersmgt }
+         - { role: galexrt.usersmgt }
 
 License
 -------
