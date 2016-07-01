@@ -8,3 +8,5 @@ users_absent_groups: []
 
 users_set_umask: false
 users_umask: "077"
+
+users_ssh_key_directory: "/etc/ssh/authorized_keys"

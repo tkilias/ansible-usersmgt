@@ -1,7 +1,0 @@
----
-# Handler to handle sshd notifications
-- name: restart sshd
-  service:
-    name: sshd
-    enabled: yes
-    state: restarted
