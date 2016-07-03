@@ -1,6 +1,7 @@
 users: []
 users_ssh: []
 users_sudo: []
+users_absent_sudo: []
 users_absent: []
 users_absent_ssh: []
 users_groups: []
