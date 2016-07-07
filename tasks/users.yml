@@ -8,7 +8,7 @@
     group: "{{ item.group|default('users') }}"
     non_unique: "{{ item.non_unique|default('no') }}"
     system: "{{ item.system|default('no') }}"
-    groups: "{% if item.groups is defined %}{% for group in item.groups %}{% if inventory_hostname == group.host %}{{ group.name }}{% if not loop.last %},{% endif %}{% endif %}{% endfor %}{% endif %}"
+    groups: "{% if item.groups is defined %}{% for group in item.groups %}{% if (group.only_on_hosts is not defined and group.not_on_hosts is not defined) or (group.only_on_hosts is defined and group.not_on_hosts is defined) or (group.only_on_hosts is defined and inventory_hostname in group.only_on_hosts) or (group.not_on_hosts is defined and inventory_hostname not in group.not_on_hosts) %}{{ group.name }}{% endif %}{% endfor %}{% endif %}"
     move_home: "{{ item.system|default('no') }}"
     home: "{{ item.home }}"
     createhome: "{{ item.createhome|default('yes') }}"
