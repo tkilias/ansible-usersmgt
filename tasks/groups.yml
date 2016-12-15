@@ -1,5 +1,5 @@
 ---
-- name: Create groups
+- name: "Create groups"
   group:
     gid: "{{ item.gid|default('') }}"
     name: "{{ item.name }}"

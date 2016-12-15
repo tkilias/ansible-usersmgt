@@ -1,5 +1,5 @@
 ---
-- name: Remove absent users
+- name: "Remove absent users"
   user:
     name: "{{ item.name }}"
     state: absent
