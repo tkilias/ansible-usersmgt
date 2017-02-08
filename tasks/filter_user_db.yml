@@ -5,7 +5,7 @@
   set_fact:
     admin_users: "{{ admin_users | default([]) + [item] }}" 
   with_items: "{{ all_users }}"
-  when: "{{ filter_by_group }} in item.groups | default([]) | json_query('[*].name')"
+  when: "'{{ filter_by_group }}' in item.groups | default([]) | json_query('[*].name')"
 - name: "Replace user database with admin_users"
   set_fact:
     users: "{{ admin_users }}"
@@ -34,4 +34,3 @@
   set_fact:
     users_ssh: "{{ admin_sshkeys }}"
 
-#[{ 'name':item.name,'shell':item.shell,'home':item.home,'uid':item.uid,'group':item.group,'groups':item.groups|default([]),'comment':item.comment,'system':item.system,'createhome': true}]
