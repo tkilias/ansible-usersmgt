@@ -17,7 +17,7 @@
   set_fact:
     admin_groups: "{{ admin_groups | default([]) + [item]  }}"      
   with_items: "{{ all_groups }}"
-  when: "item.name in users | json_query('[*].name') or item.name == 'datexis'"
+  when: "item.name in users | json_query('[*].name') or item.name == 'datexis' or item.name == 'docker_gpu'"
 - name: "Replace user database with admin_groups"
   set_fact:
     users_groups: "{{ admin_groups }}"
